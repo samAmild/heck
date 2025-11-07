@@ -6,11 +6,11 @@ void force_index_php(const char *url, char *output) {
     if (start) {
         start += 3;  // Skip "://"
     } else {
-        start = url; // No scheme, start from beginni>
+        start = url; // No scheme, start from beginning
     }
 
     const char *end = strchr(start, '/');
-    size_t domain_len = end ? (size_t)(end - start) :>
+    size_t domain_len = end ? (size_t)(end - start) : strlen(start);
 
     strncpy(output, start, domain_len);
     output[domain_len] = '\0';
@@ -19,16 +19,16 @@ void force_index_php(const char *url, char *output) {
 
 int main() {
     const char *urls[] = {
-    "",  // put your first URL here
-    "",  // put your second URL here
-    "",  // put your third URL here
-    "",  // add more as needed
-};
+        "https://example.com/page",
+        "http://test.org",
+        "www.site.net/home",
+        "plainurl.com"
+    };
 
     char result[256];
-    for (int i = 0; i < sizeof(urls)/sizeof(urls[0]);>
+    for (int i = 0; i < sizeof(urls) / sizeof(urls[0]); i++) {
         force_index_php(urls[i], result);
-        printf("Original: %s\nModified: %s\n\n", urls>
+        printf("Original: %s\nModified: %s\n\n", urls[i], result);
     }
 
     return 0;
